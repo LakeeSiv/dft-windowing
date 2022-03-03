@@ -47,7 +47,8 @@ ax[1].set_xlabel("Frequency/Hz")
 ax[1].set_ylabel(f"DFT $X(f)$")
 if decibels:
     ax[2].plot(ff, ydb[:int(max_f / delta_f)])
-
+    ax[2].set_xlabel("Frequency/Hz")
+    ax[2].set_ylabel(f"DFT $X(f)$ [dB]")
 
 ax[1].axvline(5.15, color="black", linestyle="--", label="5.15 Hz")
 ax[1].axvline(5.5, color="gray", linestyle="--", label="5.5 Hz")
