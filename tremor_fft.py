@@ -4,19 +4,20 @@ import numpy as np
 from scipy.fft import fft
 plt.style.use("bmh")
 
-mat = scipy.io.loadmat('data.mat')
-print(mat)
+
+data = "small"
+
+
+mat = scipy.io.loadmat(f'./data/{data}.mat')
 y = mat["f0"]
 fs = int(mat["samplerate"][0][:-3])
 title = mat["dataset"][0]
-N = len(y)  # number of samples
-stem_plot = False
+N = len(y)
 
 n = np.arange(0.0, N)
 T = 1.0 / fs
 t = n*T
 delta_f = fs/N
-
 
 yf = np.abs(fft(y))
 with np.errstate(divide='ignore', invalid='ignore'):
