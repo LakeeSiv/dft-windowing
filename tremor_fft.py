@@ -35,7 +35,7 @@ ax[1].plot(ff, 2.0/N * yf[:N])
 ax[1].set_xlabel("Frequency/Hz")
 
 ax[1].set_ylabel(f"DFT $X(f)$")
-ax[2].set_ylabel(f"DFT $X(f)/ dB$")
+ax[2].set_ylabel(f"DFT $X(f) [dB]$")
 
 ax[2].plot(ff, 2.0/N * ydb[:N])
 ax[2].set_xlabel("Frequency/Hz")
