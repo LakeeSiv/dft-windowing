@@ -4,13 +4,13 @@ import scipy.signal as signal
 from scipy.fft import fft
 plt.style.use("bmh")
 
-N = 8000  # number of samples
+N = 80000  # number of samples
 fs = 1000  # sampling frequency
 max_f = 10  # max frequency plotted
 decibels = True
 stem_plot = True
-# window = np.blackman(N)  # windowing function
-window = None
+window = np.blackman(N)  # windowing function
+# window = None
 
 n = np.arange(0.0, N)
 T = 1.0 / fs
@@ -18,7 +18,7 @@ t = n*T
 delta_f = fs/N
 
 
-y = np.sin(5.15 * 2.0*np.pi*t) + 0.25*np.sin(5.5 * 2.0*np.pi*t)
+y = np.sin(np.pi * 2.0*np.pi*t) + 0.25*np.sin(5.5 * 2.0*np.pi*t)
 # y = 0.25*np.sin(5.5 * 2.0*np.pi*t)
 if window is not None:
     y = np.multiply(y, window)
