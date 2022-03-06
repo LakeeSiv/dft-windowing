@@ -13,7 +13,8 @@ y = np.concatenate( mat["f0"][0:6000], axis=0)
 fs = int(mat["samplerate"][0][:-3])
 title = mat["dataset"][0]
 N = len(y)
-print(y)
+window = np.hanning(N)
+y = np.multiply(y, window)
 n = np.arange(0.0, N)
 T = 1.0 / fs
 t = n*T
