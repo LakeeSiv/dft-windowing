@@ -4,8 +4,8 @@ import scipy.signal as signal
 from scipy.fft import fft
 plt.style.use("bmh")
 
-N = 800000  # number of samples
-fs = 1000  # sampling frequency
+N = 7000  # number of samples
+fs = 500  # sampling frequency
 max_f = 10  # max frequency plotted
 decibels = True
 stem_plot = True
@@ -17,7 +17,9 @@ t = n*T
 delta_f = fs/N
 
 
-y = np.sin(np.pi * 2.0*np.pi*t) + 0.25*np.sin(3.25 * 2.0*np.pi*t)
+# y = np.sin(np.pi * 2.0*np.pi*t) + 0.25*np.sin(3.25 * 2.0*np.pi*t)
+y = (125*np.sin(2*3.41*np.pi*t) + 75*np.sin(7.74 *
+                                            2.0*np.pi*t) + 43*np.sin(7.17 * 2.0*np.pi*t))*np.exp(-t/15)
 windows = {
     "Rectangular": np.ones(N),
     "Hanning": np.hanning(N),
@@ -44,7 +46,7 @@ ax[0].plot(t, y)
 ax[0].set_xlabel("Time/s")
 ax[0].set_ylabel("$x(t)$")
 ax[0].set_title(
-    "$x(t) = \sin{(2\pi * 5.15 * t) + 0.25\sin{(2\pi * 5.5 * t)}}$")
+    "$x(t) = [125 \sin{(2\pi * 3.41 * t) + 75 \sin{(2\pi * 7.74 * t)}} + 43 \sin{(2\pi * 7.17 * t)}]e^{-t/15}$")
 if stem_plot:
     ax[1].stem(ff, 2.0/N * yf[:int(max_f / delta_f)],
                use_line_collection=True)
@@ -58,7 +60,11 @@ if decibels:
     ax[2].set_xlabel("Frequency/Hz")
     ax[2].set_ylabel(f"DFT $X(f)$ [dB]")
 
-ax[1].axvline(5.15, color="black", linestyle="--", label="5.15 Hz")
-ax[1].axvline(5.5, color="gray", linestyle="--", label="5.5 Hz")
+ax[1].axvline(3.41, color="gray", linestyle="--")
+ax[1].axvline(7.74, color="gray", linestyle="--")
+ax[1].axvline(7.17, color="gray", linestyle="--")
+ax[2].axvline(3.41, color="gray", linestyle="--")
+ax[2].axvline(7.74, color="gray", linestyle="--")
+ax[2].axvline(7.17, color="gray", linestyle="--")
 plt.legend()
 plt.show()
